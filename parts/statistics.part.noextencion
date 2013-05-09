@@ -1,0 +1,63 @@
+<div id='main'  style='background: rgba(255, 255, 255, .7)'>
+<h2>Dashboard</h2>
+Default Metrics
+<div id="genderDistributionPie">
+<p>Distribution of All Incidents by Gender</p>
+<p><img src="/imagenes/pieGraph.jpg"></p>
+</div>
+<div id="highIncidenceCitiesTable">
+<table border="1">
+  <tbody>
+    <tr>
+      <th>Rank</th>
+      <th>City</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>San Juan</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Caguas</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Bayamon</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Carolina</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Mayaguez</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Arecibo</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Trujillo Alto</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Vieques</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Culebra</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Utuado</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div id="todayIncidentsLineGraph">
+<p>These are the incidents that have occured today.</p>
+<p><img src="/imagenes/lineGraph.jpg"></p>
+
+</div>
+

@@ -1,0 +1,267 @@
+
+
+function initialize() {
+  var map = new GMap2(document.getElementById("map_canvas"));
+  map.setCenter(new GLatLng(18.200653,-66.492004), 9);
+  map.setMapType(G_PHYSICAL_MAP);
+  map.enableDoubleClickZoom();
+  map.enableScrollWheelZoom();
+  
+  //add first point tester
+//  var point = new GLatLng(18.209459,-67.140541);
+//  var marker = createMarker(point,'Miguel hiso un corte de pastelillo!!!')
+ // map.addOverlay(marker);
+  
+  nVar = map;  
+  console.log("LOADED MAP");
+  customButtons(map);
+  
+  window.gMap = map;
+  
+  $('body').resize( function() {
+				console.log('resize map='+map);
+				$('#map_canvas').css('heigth','100%');
+				map.checkResize();
+	});
+	
+/**
+  for(i=0;i<30;i++){
+   //timeOut(18.209459+(1*Math.random()),-67.140541+(1*Math.random()),map) 
+    point = new GLatLng(18.209459+(0.01*Math.random()),-67.140541+(0.01*Math.random()));
+   marker = createMarker(point,'Miguel hiso un corte de pastelillo!!!');
+   map.addOverlay(marker);   
+   }
+**/
+
+   
+  
+	try{
+	window.currentPosition=1;
+   window.endPosition=50;
+   
+   var i = setInterval(
+   function(){
+   initLoader(map,i);
+   }
+   ,3000);
+    //map.div.style.position = 'fixed';
+	}catch(error){
+		console.log(error);
+	}
+	
+
+}
+
+function initLoader(map,i){
+	try{
+	if(window.currentPosition==window.endPosition){
+		clearInterval(i);
+		console.log('added all points');
+		return;
+	}
+	
+	
+	$.get("http://icom5016.ece.uprm.edu/g18/getNum.php",{ 'number': window.currentPosition },function(data
+){
+			console.log("received "+ data);
+			if(data == "NaN"){
+				clearInterval(i);
+		        return;
+			} else {
+				setTimeout(processData(data,map),1000);
+			}
+			
+	});
+	window.currentPosition++;
+	}catch(err){
+		console.log(err);
+	}
+
+}
+
+function processData(data,map){
+		try{
+		 console.log("starte processing: "+data);
+         var lat=data.substring(0,data.indexOf('$'));
+		 data=data.substring(data.indexOf('$')+1);
+		 var lon=data.substring(0,data.indexOf('$'));
+		 data=data.substring(data.indexOf('$')+1);
+		 var license=data.substring(0,data.indexOf('$'));
+		 data=data.substring(data.indexOf('$')+1);
+		 var descrip=data.substring(0);
+		 data=data.substring(data.indexOf('$')+1);
+		 
+		// var baseIcon = new GIcon(G_DEFAULT_ICON);
+		 //baseIcon.shadow = "http://www.google.com/mapfiles/shadow50.png";
+		 //baseIcon.iconSize = new GSize(20, 34);
+		 //baseIcon.shadowSize = new GSize(37, 34);
+		 //baseIcon.iconAnchor = new GPoint(9, 34);
+		 //baseIcon.infoWindowAnchor = new GPoint(9, 2);
+
+		 if(lat > 18.523888 || lat < 17.935622 || lon > -65.627289|| lon < -67.270889){
+			console.log("the following cordinates are outside of Puerto Rico's bounding box: " + lat + "," + lon);
+			window.endPosition++;
+			return;
+		 }
+		
+		
+		 var point = new GLatLng(lat,lon);	 
+		 new google.maps.LatLngBounds().extend(point);
+		//marker = createMarker(point, "License plate:"+license+"<br/>Description"+descrip);
+		//map.addOverlay(marker);
+		
+		 //var letter = String.fromCharCode("A".charCodeAt(0) + window.currentPosition);
+		 //var letteredIcon = new GIcon(baseIcon);
+		 //letteredIcon.image = "http://maps.google.com/mapfiles/arrow.png"
+		 //letteredIcon.image = "http://openiconlibrary.sourceforge.net/gallery2/pictograms/png/48x48/din-4844-2-safety_signs/pictogram-din-m000-general.png";
+
+		 // Set up our GMarkerOptions object
+         //markerOptions = { icon:letteredIcon };
+         //var marker = new GMarker(point, markerOptions);
+		 var marker = new GMarker(point);
+		 marker.value = window.currentPosition;
+		 
+		
+		 marker.setLatLng(point); 
+		  GEvent.addListener(marker, "click", function() {
+			marker.openInfoWindowHtml("License plate: "+license+"<br/>Description: "+descrip);
+		  });
+			
+			map.addOverlay(marker);
+			
+			console.log("added to " + lat + "," + lon);
+		if(window.opacity==0){
+			map.setCenter(point, 9);//new GLatLng(lat+0.4,lon)
+			GEvent.trigger(marker, "click");
+		}
+		}catch(err){
+			console.log(err);
+		}
+}
+
+
+
+function timeOut(lat,lon,map){
+  console.log("started timeout");   
+   try{	
+	var point = new GLatLng(lat,lon);
+   var marker = createMarker(point,'Miguel hiso un corte de pastelillo!!!')
+   map.addOverlay(marker);
+   //setTimeout(timeOut(18.209459+(2*Math.random()),-67.140541+(2*Math.random()),map),4000);
+   }catch(err)
+  {
+  		alert(err);
+  }
+  console.log("ended timeout"); 
+}
+   
+function createMarker(point,html) {
+        var marker = new GMarker(point);
+        GEvent.addListener(marker, "click", function() {
+          marker.openInfoWindowHtml(html);
+        });
+        return marker;
+}
+
+function customButtons(map){
+	// A TextualZoomControl is a GControl that displays textual "Zoom In"
+// and "Zoom Out" buttons (as opposed to the iconic buttons used in
+// Google Maps).
+
+// We define the function first
+function TextualZoomControl() {
+}
+
+// To "subclass" the GControl, we set the prototype object to
+// an instance of the GControl object
+TextualZoomControl.prototype = new GControl();
+
+// Creates a one DIV for each of the buttons and places them in a container
+// DIV which is returned as our control element. We add the control to
+// to the map container and return the element for the map class to
+// position properly.
+TextualZoomControl.prototype.initialize = function(map) {
+  var container = document.createElement("div");
+
+  var zoomInDiv = document.createElement("div");
+  this.setButtonStyle_(zoomInDiv);
+  container.appendChild(zoomInDiv);
+  zoomInDiv.appendChild(document.createTextNode("Zoom In"));
+  GEvent.addDomListener(zoomInDiv, "click", function() {
+    map.zoomIn();
+  });
+
+  var zoomOutDiv = document.createElement("div");
+  this.setButtonStyle_(zoomOutDiv);
+  container.appendChild(zoomOutDiv);
+  zoomOutDiv.appendChild(document.createTextNode("Zoom Out"));
+  GEvent.addDomListener(zoomOutDiv, "click", function() {
+    map.zoomOut();
+  });
+
+  map.getContainer().appendChild(container);
+  return container;
+}
+
+// By default, the control will appear in the top left corner of the
+// map with 7 pixels of padding.
+TextualZoomControl.prototype.getDefaultPosition = function() {
+  return new GControlPosition(G_ANCHOR_BOTTOM_RIGHT, new GSize(7, 7));
+}
+
+// Sets the proper CSS for the given button element.
+TextualZoomControl.prototype.setButtonStyle_ = function(button) {
+  button.style.textDecoration = "underline";
+  button.style.color = "#0000cc";
+  button.style.backgroundColor = "white";
+  button.style.font = "small Arial";
+  button.style.border = "1px solid black";
+  button.style.padding = "2px";
+  button.style.marginBottom = "3px";
+  button.style.textAlign = "center";
+  button.style.width = "6em";
+  button.style.cursor = "pointer";
+}
+
+map.addControl(new TextualZoomControl());
+
+}
+function parseDouble(value){
+  if(typeof value == "string") {
+    value = value.match(/^-?\d*/)[0];
+  }
+  
+  return !isNaN(parseInt(value)) ? value * 1 : NaN;
+}
+    
+/*Google Maps API V3  
+function initialize() {
+    var centerLng = new google.maps.LatLng(38.693482,-75.057564);
+    var myOptions = {
+      zoom: 8,
+      center: centerLng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"),
+        myOptions);
+      
+    var markerLng = new google.maps.LatLng(38.693281,-75.075159);
+    var marker = new google.maps.Marker({
+      position: markerLng, 
+      map: map, 
+      title:"Hello World!"
+  }
+  
+    $(window).scroll(function () { 
+					//You've scrolled this much:height
+					$('#map_canvas').css('width',$(window).width());
+					$('#map_canvas').css('height',$(window).height());
+					map.checkResize();
+   });
+*/
+
+
+    // This Javascript is based on code provided by the
+    // Community Church Javascript Team
+    // http://www.bisphamchurch.org.uk/   
+    // http://econym.org.uk/gmap/

@@ -1,0 +1,16 @@
+<?php
+$ip=$_SERVER['REMOTE_ADDR'];
+
+function getLastChar($haystack, $needle){
+	$last = strrpos($haystack, $needle);
+	if ($last === false) {
+  		return false;
+	}
+		return $last;
+}
+
+
+$rest = substr($ip, getLastChar($ip, ".")+1); 
+echo "Your Karma<br />" . $rest; 
+
+?>

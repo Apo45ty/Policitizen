@@ -1,0 +1,299 @@
+
+<!DOCTYPE html> <!-- Html 5 doc type-->
+<html>
+<head>
+<meta http-equiv="Content-Type" charset='utf-8' />
+<title>Policitizen</title>
+<LINK REL=StyleSheet HREF="./css/dreamwaiver.css" TYPE="text/css" MEDIA='screen, printr'>
+<script src='./js/jQuery.js'>/*avoid conflict with other script*/$j=jQuery.noConflict();</script>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=AIzaSyDnBoI16RaaMN0deR1fDwl1JH48ORN08qc" type="text/javascript"></script>
+<script language="Javascript" type="text/javascript" src="js/map.js"></script>
+
+</head>
+<!--<noscript>JS FAILED!!!</noscript>-->
+<body onload="initialize()" onunload="GUnload()">
+
+ <div class="container">
+	<noscript>Please enable Javascript</noscript>
+	
+	<header class="header">
+	
+		<a href="./home.php"><img src="imagenes/logo.png" alt="Polizitizen" name="Logo" width=
+				"180" height="90" id="Logo"/></a> <!-- logo -->
+			
+		<div class="mNav" id="mNav"><!--main navegation bar-->
+			<div class="hSearch" id="hSearch">
+			<form  action="phpUtils/makeQuery.php" method="post">
+			Search: <input type="text" name="query">
+						which is a :						
+						<select>
+								<option value="licence_plate">Licence Plate</option>
+  								<option value="incident">Incident</option>
+						</select> 
+						<input type="submit" value="Go!">
+			</form>
+			</div>			
+			
+			<div class="regLog" id="RegLog">
+				<a href="./register.html">Register</a>
+				<a href="login.html">Login</a>
+			</div>
+			
+			<br>
+			<hr/>
+			
+			<ul class="nav2" id="mainNavList">
+				<!--link 1-->
+				<a id="report.html" href="./report.html">
+				<li>
+				Report
+				</li>
+				</a>
+				<!--link 2-->
+				<a id="search.html" href="./search.html">
+				<li>
+				Searching
+				</li>
+				</a>
+				<!-- link 3-->
+				<a id="mypolicitizen.html" href="./mypolicitizen.html">
+				<li>
+				MyPolicitizen
+				</li>
+				</a>
+			</ul>
+				
+		</div>
+				
+			
+    <!-- end .header --></header>
+	
+<div class="sidebar1" id="sidebar1">
+		<ul class="nav">
+		  <li>
+		  <a id="report.php" href="./report.php">Report</a>
+		  </li>
+		  <li>
+		  <a id="search.php" href="./search.php">Searching</a>
+		  </li>
+		  <li>
+		  <a id="mypolicitizen.php" href="./mypolicitizen.php">MyPolicitizen</a>
+		  </li>
+		  <li>
+			
+		  <iframe src="http://icom5016.ece.uprm.edu/g18/phpUtils/getKarmaPoints.php"
+					scrolling="no" frameborder="0"
+					style="border:none; width:90px; height:90px;color : FFF">
+			</iframe>
+			
+		  </li>
+		</ul>
+	<!-- end .sidebar1 --></div>
+<div class="content" id="content"><div id='main'>
+	<noscript>
+	<h1>View Incidents on the Map:</h1>	
+			<h1>PLEASE TURN ON JAVASCRIPT IN ORDER TO USE THIS FUNCTION</h1>
+	<form  action="phpUtils/makeQueryMap.php" method="post">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stating Date, Month					
+						<select id="stMonth" >
+								<option value="stmonth">Month</option>
+						</select>
+						 Day 
+						<select id="stDay" >
+								<option value="stDay">Day</option>
+						</select>
+						Year						
+						<select id="stYear" >
+								<option value="stYear">Year</option>
+						</select> <br /><br />
+						
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ending Date, Month					
+						<select id="endMonth" >
+								<option value="endmonth">Month</option>
+						</select>
+						 Day 
+						<select id="endDay" >
+								<option value="endDay">Day</option>
+						</select>
+						Year						
+						<select id="endYear" >
+								<option value="endYear">Year</option>
+						</select> 
+						<input type="submit" value="Update Map!">
+		</form><br /><br /> <!-- End of Form -->
+	
+	<iframe marginheight="0" marginwidth="0"
+ 		src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Universidad+de+Puerto+Rico+Mayaguez&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=36.999937,86.572266&amp;ie=UTF8&amp;hq=Universidad+de+Puerto+Rico+Mayaguez&amp;hnear=&amp;ll=18.209459,-67.140541&amp;spn=0.086741,0.169086&amp;t=m&amp;z=13&amp;iwloc=A&amp;cid=4609623970488750993&amp;output=embed"
+ 		frameborder="0" height="350" scrolling="no" width="600">
+ 		</iframe><br>
+
+			
+		
+		<script src="./js/jQuery.js"></script>		
+		
+		<script>
+		$(document).ready(function(){
+		
+		// Fill days to max 
+		try{
+		$('#stDay').empty();
+		$('#endDay').empty();
+		
+		for(i=1;i<=31;i++){			 
+			 $('#stDay')
+         .append($("<option></option>")
+         .attr("value",stDay)
+         .text(i));
+         
+			$('#endDay')
+         .append($("<option></option>")
+         .attr("value",endDay)
+         .text(i));          	
+		}
+		}catch(err){
+			console.log(err);		
+		} /// <! -- End of days-- >
+		
+		// Fill months Must be changed with language 
+		try{
+		var months= [
+				 	"January",
+					"February",
+					"March",
+					"April",
+					"May",
+					"June",
+					"July",
+					"August",
+					"September",
+					"October",
+					"November",
+					"December"		
+		];		
+		
+		$('#stMonth').empty();
+		$('#endMonth').empty();
+		
+		for(i=0;i<12;i++){			 
+			 $('#stMonth')
+         .append($("<option></option>")
+         .attr("value",stMonth)
+         .text(months[i]));
+         
+			$('#endMonth')
+         .append($("<option></option>")
+         .attr("value",endMonth)
+         .text(months[i]));          	
+		}		
+		
+		}catch(err){
+			console.log(err);		
+		} /// <! -- End of months-- >
+		
+		// Fill years from the startYear to current year 
+		try{
+		$('#stYear').empty();
+		$('#endYear').empty();
+		
+		var currentYear = new Date().getFullYear()
+		var startYear = 1900;
+		
+		for(i=startYear;i<=currentYear;i++){			 
+			 $('#stYear')
+         .append($("<option></option>")
+         .attr("value",stYear)
+         .text(i));
+         
+			$('#endYear')
+         .append($("<option></option>")
+         .attr("value",endYear)
+         .text(i));          	
+		}
+		}catch(err){
+			console.log(err);		
+		} /// <! -- End of year-- >		
+		
+		});
+		</script>
+		
+	</noscript>
+	
+   <script>
+   $(function(){$('#footer').fadeOut(5)});
+   </script>
+</div>
+
+
+<footer class="footer" id="footer">		
+		<ul class="nav3">
+			<li style="display: inline;">
+				<a href="./termuse.php"><p>Terminos de la pagina</p></a>
+			</li>
+			<li>
+				<a href="./contact.php"><p>Contactos</p></a>
+			</li>
+			<li>
+				<a href="./phpUtils/changeLan.php"><p>Languages / Lenguajes</p></a>
+			</li>
+			<li>
+				<a id="mobile" href="./mobile/"><p>Mobile</p></a>
+			</li>
+			<li >
+				<iframe src="http://www.facebook.com/plugins/like.php?href=http://icom5016.ece.uprm.edu/g18/index.php"
+					scrolling="no" frameborder="0"
+					style="border:none; width:450px; height:20px">
+				</iframe>
+			</li>
+		</ul>
+	<!-- end .footer --></footer><!-- end of content --></div>
+	
+  <!-- end .container --></div>
+  
+	<div id="mainTog" style="position:fixed;top:180px;z-index:7;right:100px;backgroun-color:#FFF;">Show/HideMain</div>
+
+
+	
+   <!-- google maps container -->
+  	<div id="map_canvas" style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: 0; width : 100%; height:100%;"></div>
+		
+</body>
+<script type="text/javascript" src='js/JSLoaderPlugin.js'></script>
+<script type="text/javascript">
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-10143312-5']);
+			  _gaq.push(['_trackPageview']);
+
+			  (function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			  })();
+			  
+			  $(function(){
+				console.log("started ajax");
+				// Assign handlers immediately after making the request,
+				// and remember the jqxhr object for this request
+				startLoad("window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)", false);
+				//$('#main').css('width' ,$(window).width).css('height' ,$(window).height).css('overflow' ,'auto');
+				addToogleButton();
+				
+				$('#mainTog').live('click',function(){
+					$('#content').toggle();
+				});
+				
+			   
+			});
+			
+			function addBR(){
+					$('#main').append('<br/><br/>');
+			}
+			
+			function addToogleButton(){
+				$('#sidebar1').append('<li id="toogle">Show/Hide</li>').live('click', function(){
+				     $('#sidebar1 li').not('#toogle').toggle();
+				});
+			}
+</script>
+	
+</html>
+

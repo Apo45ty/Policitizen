@@ -1,0 +1,21 @@
+<div class="sidebar1" id="sidebar1">
+		<ul class="nav">
+		  <li>
+		  <a id="report.php" href="./report.php">Report</a>
+		  </li>
+		  <li>
+		  <a id="search.php" href="./search.php">Searching</a>
+		  </li>
+		  <li>
+		  <a id="mypolicitizen.php" href="./mypolicitizen.php">MyPolicitizen</a>
+		  </li>
+		  <li id="karmaPoints">
+			
+		  <iframe src="http://icom5016.ece.uprm.edu/g18/phpUtils/getKarmaPoints.php?cookie="+getCookie('userid')
+					scrolling="no" frameborder="0"
+					style="border:none; width:90px; height:90px;color : FFF">
+			</iframe>
+			
+		  </li>
+		</ul>
+	<!-- end .sidebar1 --></div>

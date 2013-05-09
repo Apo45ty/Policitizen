@@ -1,0 +1,19 @@
+	<div class="sidebar1" id="sidebar1">
+		<ul class="nav">
+		  <li>
+		  <a id="report.php" href="./report.php">Make Report</a>
+		  </li>
+		  <li>
+		  <a id="helpReport.php" href="./helpReport.php">Help</a>
+		  </li>
+		  <li id="karmaPoints">
+			
+		  <iframe src="./phpUtils/getKarmaPoints.php"
+					scrolling="no" frameborder="0"
+					style="border:none; width:90px; height:90px">
+			</iframe>
+			
+		  </li>
+		</ul>
+
+	<!-- end .sidebar1 --></div>

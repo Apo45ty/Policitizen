@@ -1,0 +1,54 @@
+<div id='main'  style='background: rgba(255, 255, 255, .7)'>
+		<h2>Register</h2>
+       					<form action="register.php" method="post">
+                			
+                				<table>
+                					<tr>
+                						<td>First Name</td>
+                						
+                						<td><input type="text" id="firstn" pattern="[a-zA-Z0-9]+" name="firstn" placeholder="Only letters and numbers"/></td>
+                					</tr>
+                					<tr>
+                						<td>Last Name</td>
+                						
+                						<td><input type="text" pattern="[a-zA-Z0-9]+"  id="lastn" name="lastn" placeholder="Only letters and numbers"/></td>
+                					</tr>
+									<tr>
+                						<td>Gender</td>
+                						
+                						<td><input type="text" id="gender" pattern="[mMfF]{1}"  name="gender" placeholder="Use one letter"/></td>
+                					</tr>
+                					<tr>
+                						<td>Email</td>
+                						
+                						<td><input type="email" id="email" name="email" placeholder="aproper@email.com"/></td>
+                					</tr>
+									                					<tr>
+                						<td>Username</td>
+                						
+                						<td><input pattern="[a-zA-Z0-9]+" type="text" id="username" required name="username" placeholder="Only letters and numbers"/></td>
+                					</tr>
+                					<tr>
+                						<td>Password</td>
+                						
+                						<td><input pattern="[a-zA-Z0-9]+" type="password" id="password" required name="password" placeholder="Only letters and numbers"/></td>
+                					</tr>
+                					<tr>
+                						<td>State</td>
+                						
+                						<td id="state">
+												<input pattern="[a-zA-Z0-9 ]+" type="text" id="state" name="state" placeholder="Puerto Rico"/></td>
+                						</td>
+                						<td>City</td>
+                						<td>
+												<input pattern="[a-zA-Z0-9 ]+" type="text" id="city" name="city" placeholder="Comerio"/></td>
+                						</td>
+                					</tr>
+                				</table><br />
+                				<input type="submit" value="Sign Up"/>
+       					 
+       					 </form><div style="text-align: center"></div><br /><br /><br />
+
+</div>
+	
+		

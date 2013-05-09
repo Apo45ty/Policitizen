@@ -1,0 +1,11 @@
+<div id='main' style='background: rgba(255, 255, 255, .7)' >
+<h1>Settings</h1>
+<h2>Follow a license plate</h2>
+<form id="addLicense" action="settings.php" method="post">
+<input type="text" name="license"><input type="submit" value="Add!">
+</form>
+<h2>UnFollow a license plate</h2>
+<form id="deleteLicenses" action="settings.php" method="get">
+<input type="text" name="license"><input type="submit" value="Remove!">
+</form>
+</div>

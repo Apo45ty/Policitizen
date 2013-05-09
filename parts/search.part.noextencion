@@ -1,0 +1,19 @@
+<div id='main'  style='background: rgba(255, 255, 255, .7)'>
+
+		<h1>Search for incidents</h1>
+
+		<div id="Search">
+			<form  action="search.php" method="get">
+			Search: <input type="text" name="query">
+						which is a :						
+						<select name="type">
+								<option value="license">Licence Plate</option>
+  								<option value="incident">Incident</option>
+						</select> 
+						<input type="hidden" name="page" value="1">
+						<input type="submit" value="Go!">
+			</form>
+		</div>	
+	<br/>
+	<br/>
+</div>

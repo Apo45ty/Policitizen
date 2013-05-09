@@ -1,0 +1,8 @@
+<div id='main'  style='background: rgba(255, 255, 255, .7)'>
+<h1>Search</h1>
+<p>You can make a straight foward search by simply typing the license plate or incident type and receive a result.</p>
+<h1>Advance Search</h1>
+<p>You can make and advance search by typing the license plate and filling in all other filters, those fields left empty are not included in the search, receive a result.</p>
+<h1>Map Search</h1>
+<p>You can look at the PR map and get view incidents by date.</p>
+</div>

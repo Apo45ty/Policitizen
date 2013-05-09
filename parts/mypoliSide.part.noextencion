@@ -1,0 +1,19 @@
+<div class="sidebar1" id="sidebar1">
+		<ul class="nav">
+		  <li>
+		  <a id="notifications.php" href="./notifications.php">Notifications</a>
+		  </li>
+		  <li>
+		  <a id="settings.php" href="./settings.php">Settings</a>
+		  </li>
+		   <li id="karmaPoints">
+			
+		  <iframe src="./phpUtils/getKarmaPoints.php"
+					scrolling="no" frameborder="0"
+					style="border:none; width:90px; height:90px">
+			</iframe>
+			
+		  </li>
+		</ul>
+		
+	<!-- end .sidebar1 --></div>

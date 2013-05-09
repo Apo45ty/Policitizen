@@ -1,0 +1,110 @@
+
+	
+  <!-- end .container --></div>
+  
+        <script type="text/javascript" src="js/generateUserId.js"></script>
+	<div id="mainTog" style="position:absolute;top:90px;z-index:5; left:75%px ;right:10px;background: rgba(255, 255, 255, 1);border-style:solid;border-width:1px;">
+		Page/Map Opacity<br/>
+		<div id='slider'></div>
+	</div>
+	<!--<div id="user_id" style="position:fixed;top:130px;z-index:7;right:0px;background-color:#FFF;">Username</div>-->
+	
+   <!-- google maps container -->
+  	<div id="map_canvas" style="position: absolute; top: 90px; bottom: 0; left: 180px; right: 0; z-index: 0; width : 640px; height:400px;"></div>
+	
+</body>
+<script type="text/javascript" src='js/JSLoaderPlugin.js'></script>
+<script type="text/javascript">
+			
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-10143312-5']);
+			  _gaq.push(['_trackPageview']);
+
+			  (function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			  })();
+			  
+			  $(function(){
+				console.log("started ajax");
+				// Assign handlers immediately after making the request,
+				// and remember the jqxhr object for this request
+				startLoad("window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)", false);
+				//$('#main').css('width' ,$(window).width).css('height' ,$(window).height).css('overflow' ,'auto');
+				addToogleButton();
+				
+				
+				
+				$( "#slider" ).slider({
+					max:100,
+					min:0,
+					value: 70,
+					change: function(event, ui) { 
+								//alert(ui.value);
+								if(ui.value==0){
+									$('#content').hide();
+									//$('map_canvas').show();
+								}
+								if(ui.value>0){
+									$('#content').show();
+									//$('map_canvas').hide();
+								}
+								window.opacity = ui.value/100;
+								//$('.container').css("background", "rgba(0, 0, 0, "+window.opacity+")");
+								jQuery('#map_canvas').css('opacity', (1-window.opacity)).css('filter', 'alpha(opacity='+(1-window.opacity)+')').css('-moz-opacity', (1-window.opacity)).css('-khtml-opacity', (1-window.opacity));
+								//$('map_canvas').css("background", "rgba(0, 0, 0, "+(1-window.opacity)+")");
+								//$('.header').css("background", "rgba(255, 255, 255, "+window.opacity+")");
+								//$('#sidebar1').css("background", "rgba(255, 255, 255, "+window.opacity+")");
+								//$('.content').css("background", "rgba(255, 255, 255, "+window.opacity+")");
+								//$('.ul').css("background", "rgba(255, 255, 255, "+window.opacity+")");
+								//$('#mainTog').css("background", "rgba(255, 255, 255, "+window.opacity+")");
+								
+								if($('#main'))
+									$('#main').css("background", "rgba(255, 255, 255, "+window.opacity+")");
+							}
+				});
+			
+			
+				//$('#mainTog').live('click',function(){
+				//	$('#content').toggle();
+				//});
+				
+				
+				setInterval(function(){
+					initializeKarmaPoints();
+				},20000);
+				
+				var i=setInterval(function(){
+					initializeCookie(i);
+				},10000);
+				
+				$(checkIfLogin());
+				
+				// WTF ??? wont work
+				//$(window).bind( 'hashchange',function(){
+				//   loadContent(location.hash);
+				//});
+			   
+			});
+			
+			var login=getCookie("login");
+			if (login=="true"){
+				$('#RegLog').html(getCookie("userid")
+				+"<input type='button' value='Sing Out' onclick='singOut()'/>");
+			}					
+			// WTF wont work
+			(function() {
+			var ev = new $.Event('remove'),
+				orig = $.fn.remove;
+			$.fn.remove = function() {
+				$(this).trigger(ev);
+				return orig.apply(this, arguments);
+			}
+			})();
+			
+					
+			
+</script>
+	
+</html>

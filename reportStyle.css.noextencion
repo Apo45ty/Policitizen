@@ -1,0 +1,141 @@
+
+#headText {
+	position: fixed;
+	font-size: 14px;
+	left: 5px;
+	top: 48px;
+}
+
+#baseText {
+	position: fixed;
+	font-size: 14px;
+	left: 5px;
+	top: 357px;
+}
+
+#takePictureButton {
+	position: fixed;
+	top: 412px;
+	left: 5px;
+	
+	width: 195px;
+	height: 27px;
+	
+	padding-top: 11px;
+	text-align: center;
+	font-size: 14px;
+	background-color: #d6dad3;
+}
+
+#sendReportButton {
+	position: fixed;
+	top: 95%;
+	/*top: 412px;*/
+	left: 205px;
+	
+	width: 110px;
+	height: 27px;
+	
+	padding-top: 11px;
+	text-align: center;
+	font-size: 14px;
+	background-color: #d6dad3;
+}
+
+#licensePlateInput {
+	position: fixed;
+	top: 375px;
+	left: 5px;
+	
+	width: 305px;
+	height: 28px;
+	
+	font: 16px Arial, sans-serif;
+	vertical-align: middle;
+}
+
+.reportImage {
+	width: 100px;
+	height: 100px;
+}
+
+.reportButton {
+	background-image: linear-gradient(bottom, rgb(0,172,0), rgb(51,203,102));
+	background-image: -o-linear-gradient(bottom, rgb(0,172,0), rgb(51,203,102));
+	background-image: -moz-linear-gradient(bottom, rgb(0,172,0), rgb(51,203,102));
+	background-image: -webkit-linear-gradient(bottom, rgb(0,172,0), rgb(51,203,102));
+	background-image: -ms-linear-gradient(bottom, rgb(0,172,0), rgb(51,203,102));
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.00, rgb(0,172,0)),
+		color-stop(0.75, rgb(51,203,102))
+	);
+	
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+    border-color: #000000;
+    border-width: 3px;
+    border-style: solid;
+    
+    width: 84px;
+	height: 84px;
+}
+
+#reportButton1 {
+	position: fixed;
+	left: 20px;
+	top: 70px;
+}
+
+#reportButton2 {
+	position: fixed;
+	left: 115px;
+	top: 70px;	
+}
+
+#reportButton3 {
+	position: fixed;
+	left: 210px;
+	top: 70px;
+}
+
+#reportButton4 {
+	position: fixed;
+	left: 20px;
+	top: 165px;	
+}
+
+#reportButton5 {
+	position: fixed;
+	left: 115px;
+	top: 165px;	
+}
+
+#reportButton6 {
+	position: fixed;
+	left: 210px;
+	top: 165px;
+}
+
+#reportButton7 {
+	position: fixed;
+	left: 20px;
+	top: 260px;
+}
+
+#reportButton8 {
+	position: fixed;
+	left: 115px;
+	top: 260px;
+}
+
+#reportButton9 {
+	position: fixed;
+	left: 210px;
+	top: 260px;
+}

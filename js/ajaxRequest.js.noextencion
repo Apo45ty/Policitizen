@@ -1,0 +1,51 @@
+function loadContent(path){
+$('#main').html("Loading Data");
+      var jqxhrM = $.get(path,{ ajax:"main" },  function(xhr, status, errorCode) {
+    	try{
+         var data = xhr;
+	 console.log("success main");
+	 $('#main').html(data);
+ 	//Handle all anchors within the main
+	 $("#main a").click(function(){
+		 console.log($(this).attr('href'))
+		 //loadContent($(this).attr('href')); // load all links within main with ajax
+	});
+
+	}catch(err)
+	{
+	   console.log(err);
+	}	
+	  })
+	  .error(function() { 
+		console.log("error"); 
+	   })
+	  .complete(function() { 
+	      console.log("complete"); 
+	   });
+
+
+$('#sidebar1').html("Loading Data");
+  var jqxhrS = $.get(path,{ ajax:"side" },  function(xhr, status, errorCode) {
+    	try{
+         var data = xhr;
+	 console.log("success side");
+	 $('#sidebar1').html(data);
+         //handle all anchors within the sidebar
+	 $("#sidebar1 a").click(function(){
+		 console.log($(this).attr('href'))
+		 loadContent($(this).attr('href'));
+	});
+
+	}catch(err)
+	{
+	   console.log(err);
+	}	
+	  })
+	  .error(function() { 
+		console.log("error"); 
+	   })
+	  .complete(function() { 
+	      console.log("complete"); 
+	   });
+
+}

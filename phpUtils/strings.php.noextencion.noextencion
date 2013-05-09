@@ -1,0 +1,11 @@
+
+<?php
+
+function getLastChar($haystack, $needle){
+	$last = strrpos($haystack, $needle);
+	if ($last === false) {
+  		return false;
+	}
+		return $last;
+}
+?>

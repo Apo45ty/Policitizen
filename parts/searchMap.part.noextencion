@@ -1,0 +1,16 @@
+<div id='main'  style='background: rgba(255, 255, 255, .7)'>
+	<noscript>
+	<h1>View Incidents on the Map:</h1>	
+			<h1>PLEASE TURN ON JAVASCRIPT IN ORDER TO USE THE MAP FUNCTION</h1>
+			<img src="imagenes/logo.png" style="width : 640px; height:400px;"/>
+	</noscript>
+	
+   <script>
+  
+   
+   jQuery('#map_canvas').css('opacity', 1).css('filter', 'alpha(opacity=1)').css('-moz-opacity', 1).css('-khtml-opacity', 1);
+   $(function(){$('#footer').fadeOut(5)});
+   $('#footer').fadeOut(5);
+   
+   </script>
+</div>

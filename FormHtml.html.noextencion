@@ -1,0 +1,82 @@
+<html>
+<head>
+</head>
+<body>
+<style>
+</style>
+<script src="js/JQ.js"></script>
+
+<h1>Fill in the form and then submit</h1>
+<p>Select your form of financing for a year in a startup company with only </p>
+<p>Dont hack this app please!</p>
+
+<form id="form" action="http://localhost:2000" method="get">
+<input type="submit" value="Go!" />
+  <div class="MakeProduct">
+  Write down number for RandD: <input type="text" name="RandDProfit?0" /> 
+  Write down number for TotalTime: <input type="text" name="TotalTimeProfit?0" /> 
+  </div>
+</form>
+
+
+<div id="add">
+<select id="types" >
+ <option value="BankLoan">BankLoan</option>
+ <option value="DedicateMoney">DedicateMoney</option>
+ <option value="DedicateTime">DedicateTime</option>
+ <option value="ElevatorsPitchCompetition">ElevatorsPitchCompetition</option>
+ <option value="GatherInvestorForDebt">GatherInvestorForDebt</option>
+ <option value="GatherInvestorForEquity">GatherInvestorForEquity</option>
+ <option value="Kickstarter">Kickstarter</option>
+ <option value="MakeProduct">MakeProduct</option>
+ <option value="SBIR">SBIR</option>
+</select>
+
+<input id="addDiv" type="button" value="Select" />
+
+</div>
+
+<script>
+var count=1;
+$(function(){
+	$('#addDiv').click(function(e){
+		e.preventDefault(); // cancel navigation
+		var form = getForm($('#types').val());		
+		$('#form').append(form);
+	});
+}); 
+
+function getForm(type){
+	switch(type){
+		case 'BankLoan':
+			return '<div class="bankLoan"> Write down number for hours in BankLoan: Time <input type="text" name="BankLoanTime?' + (count) +'"> Amount: <input type="text" name="BankLoanAmount?' + (count++) +'"></div>'
+			break;
+		case 'DedicateMoney':
+			return '<div class="dedicateMoney"> Write down number for hours in DedicateMoney:Time <input type="text" name="DedicateMoneyTime?' + (count) +'"> Money<input type="text" name="DedicateMoney?' + (count++) +'"></div>'
+			break;
+		case 'DedicateTime':
+			return '<div class="dedicateTime"> Write down number for hours in DedicateTime: <input type="text" name="DedicateTime' + (count++) +'"></div>'
+			break;
+		case 'ElevatorsPitchCompetition':
+			return '<div class="elevatorsPitchCompetition"> Write down number for hours in ElevatorsPitchCompetition: <input type="text" name="ElevatorsPitchCompetition' + (count++) +'"></div>'
+			break;		
+		case 'GatherInvestorForDebt':
+			return '<div class="gatherInvestorForDebt"> Write down number for hours in GatherInvestorForDebt: <input type="text" name="GatherInvestorForDebt' + (count++) +'"></div>'
+			break;
+		case 'GatherInvestorForEquity':
+			return '<div class="gatherInvestorForEquity"> Write down number for hours in GatherInvestorForEquity: <input type="text" name="GatherInvestorForEquity' + (count++) +'"></div>'
+			break;
+		case 'Kickstarter':
+			return '<div class="kickstarter"> Write down number for hours in Kickstarter: Time <input type="text" name="Kickstarter?' + (count) +'"> Pledge <input type="text" name="Kickstarter?' + (count++) +'"></div>'
+			break;
+		case 'MakeProduct':
+			return '<div class="makeProduct"> Write down number for hours in MakeProduct: <input type="text" name="MakeProduct'+ (count++) +'"></div>'
+			break;
+		case 'SBIR':
+			return '<div class="sBIR"> Write down number for hours in SBIR: <input type="text" name="SBIR' + (count++) +'"></div>'
+			break;
+	}
+}
+</script>
+</body>
+</html>

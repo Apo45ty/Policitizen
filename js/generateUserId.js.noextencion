@@ -1,0 +1,113 @@
+function singOut(){
+	var login=getCookie("login");
+	if (login!=null && login!=""){
+		setCookie('login','false',360);
+		$('#RegLog').html("<a id=\"register.php\" href=\"register.php\">Register</a>"
+						  +" <a id=\"login.php\" href=\"login.php\">Login</a>");
+	}
+}
+
+function initializeKarmaPoints(){
+	if(checkCookie()){
+		//$('#RegLog').append("Hello "+getCookie("userid"));
+		console.log('changed username');
+		setTimeout(getKarmaPoints(), 4000);
+	}else{
+	 console.log('cookie is not set');
+	}
+}
+
+function getKarmaPoints(){
+	try{
+	$.get("http://icom5016.ece.uprm.edu/g18/phpUtils/getKarmaPoints.php", { 'cookie': getCookie("userid") },
+				function(data){
+				var html=data;
+					setTimeout(function(html){
+						console.log("karma Loaded: " + data);
+						$('#karmaPoints').html("Hello "+getCookie("userid")+"<br/>"+data);
+					},5000);
+				});
+	}catch(err){
+		console.log(err);
+	}
+}
+
+ function initializeCookie(i){
+    if(checkCookie()){
+		console.log('cookie is set, stoping...');
+		// in the onclick to clear
+		clearInterval(i);
+	}else{
+	 console.log('cookie is not set');
+	 setTimeout(get_macaddress(),1000);
+	}
+ }//end of initialize cookie
+ 
+function get_macaddress(){
+    var result="Yugioh";
+	if ( typeof(document.macaddress_applet.isActive) == "undefined" )
+    {
+        console.log("please allow java to run on this page and refresh it.");
+    }
+    else
+    {
+        var interfaces = eval( String( document.macaddress_applet.getInterfacesJSON() ) );
+        result=interfaces;
+		
+    }// either way assing cookie
+	setTimeout(get_Cookie(result),1000);
+}//end of get mac address
+
+function get_Cookie(result){
+	$.get("http://icom5016.ece.uprm.edu/g18/phpUtils/getCookie.php", { 'interfaces': result },
+				function(data){
+				console.log("Cookie Loaded: " + data);
+				//if()
+				setCookie("userid",data.substring(0,13),2);
+	});
+}// end of get http cookie
+
+function setCookie(c_name,value,exdays)
+{
+	try{
+	console.log("cookie name="+c_name+" value="+value);
+	var exdate=new Date();
+	exdate.setDate(exdate.getDate() + exdays);
+	var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+	document.cookie=c_name + "=" + c_value;
+	}catch(err){
+	   console.log(err);
+	}
+}// end of set cookie
+
+function checkCookie()
+{
+	var username=getCookie("userid");
+	  if (username!=null && username!="")
+	  {
+	  return true;
+	  }
+	else 
+	{
+		return false;
+	}
+}//end of check cookie
+
+function getCookie(c_name)
+{
+	var i,x,y,ARRcookies=document.cookie.split(";");
+	for (i=0;i<ARRcookies.length;i++)
+	{
+	  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+	  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+	  //x=x.replace(/^\s+|\s+$/g,"");
+	  if(x.charAt(0)==" "){
+		x=x.substring(1);
+	  }
+	  if (x==c_name)
+		{
+		return unescape(y);
+		}
+	  }
+	  return "";
+}// end of get data from cookie

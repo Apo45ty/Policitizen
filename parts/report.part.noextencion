@@ -1,0 +1,198 @@
+<div id='main'  style='background: rgba(255, 255, 255, .7)'>
+	<!--<script src="js/jQuery.js"></script>-->
+	<script>
+		function getCurrentDate(){
+			var today=new Date();
+			var month=today.getMonth()+1;
+			var dd=today.getDate();
+			var yyyy=today.getFullYear()-1899;//magic number !!! no its the year from which the selection starts specified below
+			$('#endMonths :nth-child('+month+')').attr('selected', 'selected');
+			$('#endDays :nth-child('+dd+')').attr('selected', 'selected');
+			$('#endYears :nth-child('+yyyy+')').attr('selected', 'selected');
+		}
+		function getCurrentTime(){
+			var today=new Date();
+			var hours=today.getHours();
+			var min=today.getMinutes();
+			
+			$('#hours :nth-child('+hours+')').attr('selected', 'selected');
+			$('#minutes :nth-child('+min+')').attr('selected', 'selected');
+		}
+		function getCurrentLocation(){
+				var form = '<input type="hidden" name="location" value="true"/>';		
+				$('#form').append(form);
+				$('#form').append("<input type='hidden' name='cookie' value='"+getCookie('userid')+"'/>");
+				$('#AutoLocate').after('is activated').attr("disabled", "disabled");
+				$('#state, #city').attr("disabled", "disabled");				
+		}	
+	</script>
+		<h1>Report</h1>
+		
+	
+		<form id="form" action="http://icom5016.ece.uprm.edu:60000/submitReport" method="post" enctype="multipart/form-data">
+		Fill in the fields below a report<br />
+		<p>
+			<!--<input type="hidden" name="ip" value="12.215.42.20"/>-->
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date, Month					
+						<select id="endMonths" name="endMonths" >
+								<option value="endMonth">Month</option>
+						</select>
+						 Day 
+						<select id="endDays" name="endDays" >
+								<option value="endDay">Day</option>
+						</select>
+						Year						
+						<select name="endYears" id="endYears" >
+								<option value="endYear">Year</option>
+						</select> 
+						<input onclick="getCurrentDate()" id="getGate" type="button" name="getDate" value="Use current Date."/><br /><br />
+						
+						<!-- time -->
+						
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time, Hour					
+						<select name="hours" id="hours" >
+								<option value="hour">00</option>
+						</select>
+						 Minutes
+						<select name="minutes" id="minutes" >
+								<option value="minute">00</option>
+						</select>
+
+						
+						<input onclick="getCurrentTime()" id="getTime" type="button" name="getTime" value="Use current time."/><br /><br />
+						
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State <input id="state" type="text" placeholder="PR" pattern="[a-zA-Z0-9]{2}" name="state"> City <input id="city" type="text" pattern="[a-zA-Z0-9 ]+" name="city"> of incident. <input id="AutoLocate" onclick="getCurrentLocation()" type="button"  value="AutoLocate"/><br /> 
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea name="description" rows="4" placeholder="Description of location." cols="50">   </textarea> <br /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Car Year (optional) <input type="text" placeholder="year-month-day" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" name="car_year"  / ><br /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Car color (optional) <input type="text" pattern="[a-zA-Z]+" name="color"  / ><br /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Model of car (optional)<input type="text" pattern="[a-zA-Z0-9]+" name="model"  / ><br /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; License Plate <input type="text"  placeholder="AMI000" pattern="[a-zA-Z]{3}[0-9]{3}"name="license"  / ><br /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Gender of holligan (Optional) <select name="gender" id="gender" >
+																			<option value="M">Male</option>
+																			<option value="F">Female</option>
+																		 </select><br /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Picture (Optional) <input type="file" name="picture" value="usedPicture"/><br /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Incident type:
+			<table style="padding-left:5em;">
+			<tr>
+			<td><input type="radio" name="incident" value="redlight" id="incident1" /><label for="incident1"><img style="width:64px;height:64px" src="./imagenes/report1.png" alt="incident1" /></label></td>
+			<td><input type="radio" name="incident" value="speedlimit" id="incident2" /><label for="incident2"><img style="width:64px;height:64px" src="./imagenes/report2.png" alt="incident2" /></label></td>
+			<td><input type="radio" name="incident" value="stopviolation" id="incident3" /><label for="incident3"><img style="width:64px;height:64px" src="./imagenes/report3.png" alt="incident3" /></label></td>
+			</tr>
+			<tr>
+			<td><input type="radio" name="incident" value="improperlanechange" id="incident4" /><label for="incident4"><img style="width:64px;height:64px" src="./imagenes/report4.png" alt="incident4" /></label></td>
+			<td><input type="radio" name="incident" value="wrongway" id="incident5" /><label for="incident5"><img style="width:64px;height:64px" src="./imagenes/report5.png" alt="incident5" /></label></td>
+			<td><input type="radio" name="incident" value="yieldviolation" id="incident6" /><label for="incident6"><img style="width:64px;height:64px" src="./imagenes/report6.png" alt="incident6" /></label></td>			
+			</tr>
+			<tr>
+			<td><input type="radio" name="incident" value="handicapparkingviolation" id="incident7" /><label for="incident7"><img style="width:64px;height:64px" src="./imagenes/report7.png" alt="incident7" /></label></td>
+			<td><input type="radio" name="incident" value="parkingviolation" id="incident8" /><label for="incident8"><img style="width:64px;height:64px" src="./imagenes/report8.png" alt="incident8" /></label></td>
+			<td><input type="radio" name="incident" value="missingcarlights" id="incident9" /><label for="incident9"><img style="width:64px;height:64px" src="./imagenes/report9.png" alt="incident9" /></label></td>			
+			</tr>
+			</table>  <br /><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" /><br /><br />
+		</p>		
+		
+		</form>	
+		
+		
+	<script>
+	/*************** load time of day ******************/
+		loadTimeDayStuff();
+		//$(document).ready(loadTimeDayStuff());
+		function loadTimeDayStuff(){
+		
+		// Fill days to max 
+		try{
+		/********************** TIME ****************************/
+		$('#hours').empty();
+		
+		for(i=1;i<=24;i++){			 
+
+			$('#hours')
+         .append($("<option></option>")
+         .attr("value",i)
+         .text(i));          	
+		
+		} /// <! -- End of Hours-- >
+		
+		$('#minutes').empty();
+		
+		for(i=1;i<=60;i++){			 
+		
+			$('#minutes')
+         .append($("<option></option>")
+         .attr("value",i)
+         .text(i));          	
+		
+		} /// <! -- End of minutes-- >
+		
+		
+		/********************** DATE ****************************/
+		$('#endDays').empty();
+		
+		for(i=1;i<=31;i++){			 
+
+			$('#endDays')
+         .append($("<option></option>")
+         .attr("value",i)
+         .text(i));          	
+		
+		} /// <! -- End of days-- >
+		
+		// Fill months Must be changed with language 
+		
+		var months= [
+				 	"January",
+					"February",
+					"March",
+					"April",
+					"May",
+					"June",
+					"July",
+					"August",
+					"September",
+					"October",
+					"November",
+					"December"		
+		];		
+		
+
+		$('#endMonths').empty();
+		
+		for(i=0;i<12;i++){			 
+
+         
+			$('#endMonths')
+         .append($("<option></option>")
+         .attr("value",i)
+         .text(months[i]));          	
+		}		
+		
+		}catch(err){
+			console.log(err);		
+		} /// <! -- End of months-- >
+		
+		// Fill years from the startYear to current year 
+		try{
+
+		$('#endYears').empty();
+		
+		var currentYear = new Date().getFullYear()
+		var startYear = 1900;
+		
+		for(i=startYear;i<=currentYear;i++){			 
+
+			$('#endYears')
+         .append($("<option></option>")
+         .attr("value",i)
+         .text(i));          	
+		}
+		}catch(err){
+			console.log(err);		
+		} /// <! -- End of year-- >		
+		
+		}
+		
+		</script>
+</div>

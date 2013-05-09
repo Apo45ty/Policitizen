@@ -1,0 +1,89 @@
+
+<?php
+// Get a file into an array.  In this example we'll go through HTTP to get
+// the HTML source of a URL.
+/** handle ajax request**/
+if($_GET["ajax"] == "main"){
+	   /* special ajax here */
+	function get_content(){
+			$content = "";
+			$lines = file('./parts/statistics.part');
+
+			// Loop through our array, show HTML source as HTML source; and line numbers too.
+			foreach ($lines as $line_num => $line) {
+			    $content .= $line;
+			}
+
+			return $content;
+	}
+	
+	die(get_content()); //generic function
+}
+
+/** handle ajax request**/
+if($_GET["ajax"] == "side"){
+	   /* special ajax here */
+	function get_content(){
+			$content = "";
+			$lines = file('./parts/mypoliSide.part'); // Load main menu aka sidebar 2
+
+			// Loop through our array, show HTML source as HTML source; and line numbers too.
+			foreach ($lines as $line_num => $line) {
+			    $content .= $line;
+			}
+
+			return $content;
+	}
+	
+	die(get_content()); //generic function
+} /** ENd of Ajax Requests */
+
+$lines = file('./parts/part1.part');
+
+// Loop through our array, show HTML source as HTML source; and line numbers too.
+foreach ($lines as $line_num => $line) {
+    echo $line;
+}
+
+
+
+
+$lines = file('./parts/mypoliSide.part'); // Load main menu aka sidebar 2
+
+// Loop through our array, show HTML source as HTML source; and line numbers too.
+foreach ($lines as $line_num => $line) {
+    echo $line;
+}
+
+echo "<div class=\"content\" id=\"content\">"; // BEGINING OF CONTENT
+
+$lines = file('./parts/statistics.part');
+
+// Loop through our array, show HTML source as HTML source; and line numbers too.
+foreach ($lines as $line_num => $line) {
+    echo $line;
+}
+
+$lines = file('./parts/footer.part');
+
+// Loop through our array, show HTML source as HTML source; and line numbers too.
+foreach ($lines as $line_num => $line) {
+    echo $line;
+}
+
+echo "<!-- end of content --></div>"; // END OF CONTENT
+
+$lines = file('./parts/part2.part');
+
+// Loop through our array, show HTML source as HTML source; and line numbers too.
+foreach ($lines as $line_num => $line) {
+    echo $line;
+}
+
+// Another example, let's get a web page into a string.  See also file_get_contents().
+//$html = implode('', file('./index.html'));
+
+// Using the optional flags parameter since PHP 5
+//$trimmed = file('somefile.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+?>
+

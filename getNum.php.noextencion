@@ -1,0 +1,14 @@
+<?php
+$data = "";
+
+foreach ( $_GET as $key => $value )
+{
+	$data .= $key."=".$value."&";
+}
+
+
+$data .= "ip=".$_SERVER['REMOTE_ADDR'];	
+
+
+echo exec("curl http://localhost:60000/searchNumber?".escapeshellarg($data));
+?>

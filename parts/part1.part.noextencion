@@ -1,0 +1,72 @@
+<!DOCTYPE html> <!-- Html 5 doc type-->
+<html>
+<head>
+<meta http-equiv="Content-Type" charset='utf-8' />
+<title>Policitizen</title>
+<LINK REL=StyleSheet HREF="./css/dreamwaiver.css" TYPE="text/css" MEDIA='screen, printr'>
+<script src='./js/jQuery.js'>/*avoid conflict with other script*/$j=jQuery.noConflict();</script>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=AIzaSyDnBoI16RaaMN0deR1fDwl1JH48ORN08qc" type="text/javascript"></script>
+<script language="Javascript" type="text/javascript" src="js/map.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+
+</head>
+<!--<noscript>JS FAILED!!!</noscript>-->
+<body onload="initialize()" onunload="GUnload()">
+
+ <div class="container">
+	<noscript>Please enable Javascript</noscript>
+	
+	<header class="header">
+	
+		<a id="home.php" href="home.php"><img src="imagenes/logo.png" alt="Polizitizen" name="Logo" width=
+				"180" height="90" id="Logo"/></a> <!-- logo -->
+			
+		<div class="mNav" id="mNav"><!--main navegation bar-->
+			<div class="hSearch" id="hSearch">
+			<form  action="search.php" method="get">
+			Search: <input type="text" name="query">
+						which is a :						
+						<select name="type">
+								<option value="license">Licence Plate</option>
+  								<option value="incident">Incident</option>
+						</select> 
+						<input type="hidden" name="page" value="1">
+						<input type="submit" value="Go!">
+			</form>
+			</div>			
+			
+			<div class="regLog" id="RegLog">
+				<a id="register.php" href="register.php">Register</a>
+				<a id="login.php" href="login.php">Login</a>
+			</div>
+			
+			<br>
+			<hr/>
+			
+			<ul class="nav2" id="mainNavList">
+				<!--link 1-->
+				<a id="report.php" href="./report.php">
+				<li>
+				Report
+				</li>
+				</a>
+				<!--link 2-->
+				<a id="search.php" href="./search.php">
+				<li>
+				Searching
+				</li>
+				</a>
+				<!-- link 3-->
+				<a id="mypolicitizen.php" href="./mypolicitizen.php">
+				<li>
+				MyPolicitizen
+				</li>
+				</a>
+			</ul>
+				
+		</div>
+				
+		 <applet code="MacAddressApplet.class"  NAME="macaddress_applet" width="0" height="0" > </applet>
+    <!-- end .header --></header>
+	

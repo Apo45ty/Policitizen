@@ -1,0 +1,11 @@
+<div id='main' style='background: rgba(255, 255, 255, .7)' >
+<h1>Settings</h1>
+<h2>Follow a license plate</h2>
+<form id="addLicense" action="http://localhost:60000/addSubscriptions" method="post">
+<input type="hidden" name="cookie" value="lol">
+<input type="text" name="license">
+<input type="submit" value="Add!">
+</form>
+<form id="deleteLicenses">
+</form>
+</div>

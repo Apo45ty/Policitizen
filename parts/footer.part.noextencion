@@ -1,0 +1,18 @@
+
+
+<footer class="footer" id="footer">		
+		<ul class="nav3">
+			<li style="display: inline;">
+				<a id="termuse.php" href="./termuse.php"><p>Terminos de la pagina</p></a>
+			</li>
+			<li>
+				<a id="contact.php" href="./contact.php"><p>Contactos</p></a>
+			</li>
+			<li >
+				<iframe src="http://www.facebook.com/plugins/like.php?href=http://icom5016.ece.uprm.edu/g18/index.php"
+					scrolling="no" frameborder="0"
+					style="border:none; width:450px; height:20px">
+				</iframe>
+			</li>
+		</ul>
+	<!-- end .footer --></footer>

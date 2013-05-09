@@ -1,0 +1,130 @@
+
+
+function loadContent(path){
+//alert(path);
+$('#footer').fadeIn(5);
+$('#main').html("Loading Data");
+      var jqxhrM = $.get(path,{ ajax:"main" },  function(xhr, status, errorCode) {
+    	try{
+         var data = xhr;
+		 console.log("success main");
+		 $('#main').fadeOut(5, function() { $(this).remove(); });
+		 $('#footer').before(data);
+		 
+		}catch(err)
+		{
+		   console.log(err);
+		}	
+		  })
+		  .error(function() { 
+			console.log("error"); 
+		   })
+		  .complete(function() { 
+			  console.log("complete"); 
+		   });
+
+
+$('#sidebar1').html("Loading Data");
+  var jqxhrS = $.get(path,{ ajax:"side" },  function(xhr, status, errorCode) {
+    	try{
+         var data = xhr;
+		 $('#sidebar1').fadeOut(5, function() { $(this).remove(); });
+	     console.log("success side");
+         //alert(data);
+	    $('#content').before(data);
+		var i = setInterval(function ()
+		{
+			if ($('#sidebar1').length)
+			{
+				clearInterval(i);
+				console.log('finished loading sidebar');
+				$('#footer').before("<script>addToogleButton();</script>");
+				// safe to execute your code here
+				
+				/*
+				$('#main').bind('remove', function() {
+					jQuery('#map_canvas').css('opacity', (1-window.opacity)).css('filter', 'alpha(opacity='+(1-window.opacity)+')').css('-moz-opacity', (1-window.opacity)).css('-khtml-opacity', (1-window.opacity));
+				});
+				*/
+				//handle all anchors within the sidebar
+				 $("#sidebar1 a").click(function(e){
+					 location.hash = $(this).attr('id');// get the clicked link id
+					 e.preventDefault(); // cancel navigation
+					 loadContent($(this).attr('href'));
+				});
+				//#sidebar1, 
+				$('#main').css("background", "rgba(255, 255, 255, "+window.opacity+")");
+			}
+		}, 100);
+         
+		 
+	  }catch(err)
+	  {
+	   console.log(err);
+	  }	
+	  })
+	  .error(function(xhr, status, errorCode) { 
+		console.log("error"+errorCode+"\nStatus:"+status); 
+	   })
+	  .complete(function() { 
+	      console.log("complete"); 
+		  
+	   });
+	   
+}
+function startLoad(path, loadPage){
+		
+	 $(".header a, .footer a , .sidebar1 a").not('#mobile').click(function(e){
+		 location.hash = $(this).attr('id');// get the clicked link id
+         e.preventDefault(); // cancel navigation
+		 loadContent($(this).attr('href'));
+       });
+     if(loadPage)
+        loadContent(path);
+	 
+	 
+
+}
+
+function addToogleButton(){
+				$('#sidebar1').append('<li id="toogle">Show/Hide</li>').click( function(){
+				     $('#sidebar1 li').not('#toogle').toggle();
+				});
+}
+
+function Queue() {
+
+    var elements;
+	var count=0;
+	
+    this.enqueue = function(element) {
+		
+        if (typeof(elements) === 'undefined') {
+            elements = [];   
+
+        }
+
+        elements.push(element);                       
+		count++;
+    }
+
+    this.dequeue = function() {
+		count--;
+        return elements.shift();                                                
+
+    }
+
+    this.peek = function(){
+        return elements[0];                  
+    }
+	
+	this.getLength = function(){
+		return count;
+	}
+	
+	this.pop()= function(){
+		count--;
+		return elements.pop();
+	}
+}
+ 

@@ -1,0 +1,137 @@
+<div id='main'  style='background: rgba(255, 255, 255, .7)'>
+		<h1>Advance Search for incidents:</h1>
+		<br /> 
+		<script src="js/jQuery.js"></script>
+		<div id="Search">
+			<form  action="search.php" method="get">
+			Search: <input type="text" name="query">
+						which is a :						
+						<select name="type">
+								<option value="license">Licence Plate</option>
+  								<option value="incident">Incident</option>
+								<option value="city">City</option>
+						</select> 
+						<input type="submit" value="Go!">
+						<input type="hidden" nmae="page" value="1">
+						
+		Then narrow your results by ... <br /><br />
+		<p>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stating Date, Month					
+						<select id="stMonth" >
+								<option value="stmonth">Month</option>
+						</select>
+						 Day 
+						<select id="stDay" >
+								<option value="stDay">Day</option>
+						</select>
+						Year						
+						<select id="stYear" >
+								<option value="stYear">Year</option>
+						</select> <br /><br />
+						
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ending Date, Month					
+						<select id="endMonth" >
+								<option value="endmonth">Month</option>
+						</select>
+						 Day 
+						<select id="endDay" >
+								<option value="endDay">Day</option>
+						</select>
+						Year						
+						<select id="endYear" >
+								<option value="endYear">Year</option>
+						</select> <br /><br />
+						
+		.</p>				
+			</form>
+			<br /><br /><br /><br />
+		</div>	
+		
+		
+		<script>
+		$(document).ready(function(){
+		
+		// Fill days to max 
+		try{
+		$('#stDay').empty();
+		$('#endDay').empty();
+		
+		for(i=1;i<=31;i++){			 
+			 $('#stDay')
+         .append($("<option></option>")
+         .attr("value",stDay)
+         .text(i));
+         
+			$('#endDay')
+         .append($("<option></option>")
+         .attr("value",endDay)
+         .text(i));          	
+		}
+		}catch(err){
+			console.log(err);		
+		} /// <! -- End of days-- >
+		
+		// Fill months Must be changed with language 
+		try{
+		var months= [
+				 	"January",
+					"February",
+					"March",
+					"April",
+					"May",
+					"June",
+					"July",
+					"August",
+					"September",
+					"October",
+					"November",
+					"December"		
+		];		
+		
+		$('#stMonth').empty();
+		$('#endMonth').empty();
+		
+		for(i=0;i<12;i++){			 
+			 $('#stMonth')
+         .append($("<option></option>")
+         .attr("value",stMonth)
+         .text(months[i]));
+         
+			$('#endMonth')
+         .append($("<option></option>")
+         .attr("value",endMonth)
+         .text(months[i]));          	
+		}		
+		
+		}catch(err){
+			console.log(err);		
+		} /// <! -- End of months-- >
+		
+		// Fill years from the startYear to current year 
+		try{
+		$('#stYear').empty();
+		$('#endYear').empty();
+		
+		var currentYear = new Date().getFullYear()
+		var startYear = 1900;
+		
+		for(i=startYear;i<=currentYear;i++){			 
+			 $('#stYear')
+         .append($("<option></option>")
+         .attr("value",stYear)
+         .text(i));
+         
+			$('#endYear')
+         .append($("<option></option>")
+         .attr("value",endYear)
+         .text(i));          	
+		}
+		}catch(err){
+			console.log(err);		
+		} /// <! -- End of year-- >		
+		
+		});
+		</script>
+		<br/>
+		<br/>
+</div>

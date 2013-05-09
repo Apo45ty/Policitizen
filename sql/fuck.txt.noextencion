@@ -1,0 +1,5 @@
+INSERT INTO g18.create (userid,reportnumber) VALUES ('' , '35' );
+
+INSERT INTO vehicle (license ,model,year,color) VALUES ('ltg123' , '' , '2012-10-30' , '' );
+
+INSERT INTO report (date, time,gender,reportnumber,incidentid,license,longitude,latitude) VALUES ('2012-11-27','8:55:00','M','36','stopviolation','TDR123','18.198044','-66.84494');

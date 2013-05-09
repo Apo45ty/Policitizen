@@ -1,0 +1,469 @@
+-- MySQL dump 10.13  Distrib 5.5.27, for Win32 (x86)
+--
+-- Host: localhost    Database: g18
+-- ------------------------------------------------------
+-- Server version	5.5.27
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `cars`
+--
+
+DROP TABLE IF EXISTS `cars`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cars` (
+  `model` varchar(45) NOT NULL,
+  `make` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`model`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cars`
+--
+
+LOCK TABLES `cars` WRITE;
+/*!40000 ALTER TABLE `cars` DISABLE KEYS */;
+INSERT INTO `cars` VALUES ('sunfire','pontiac');
+/*!40000 ALTER TABLE `cars` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `contain`
+--
+
+DROP TABLE IF EXISTS `contain`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `contain` (
+  `imageid` varchar(10) NOT NULL,
+  `reportnumber` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`imageid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contain`
+--
+
+LOCK TABLES `contain` WRITE;
+/*!40000 ALTER TABLE `contain` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contain` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `create`
+--
+
+DROP TABLE IF EXISTS `create`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `create` (
+  `userid` varchar(14) NOT NULL,
+  `reportnumber` varchar(100) NOT NULL,
+  PRIMARY KEY (`userid`,`reportnumber`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `create`
+--
+
+LOCK TABLES `create` WRITE;
+/*!40000 ALTER TABLE `create` DISABLE KEYS */;
+INSERT INTO `create` VALUES ('','65'),('','70'),('','71'),('','72'),('','73'),('','74'),('00000000000000','58'),('00000000000000','60'),('00000000000000','61'),('00000000000000','62');
+/*!40000 ALTER TABLE `create` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `dbvars`
+--
+
+DROP TABLE IF EXISTS `dbvars`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `dbvars` (
+  `imageNumber` varchar(100) DEFAULT NULL,
+  `reportNumber` varchar(100) DEFAULT NULL,
+  `iconNumber` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dbvars`
+--
+
+LOCK TABLES `dbvars` WRITE;
+/*!40000 ALTER TABLE `dbvars` DISABLE KEYS */;
+INSERT INTO `dbvars` VALUES ('0','75','0');
+/*!40000 ALTER TABLE `dbvars` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `describe`
+--
+
+DROP TABLE IF EXISTS `describe`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `describe` (
+  `incidentid` varchar(100) DEFAULT NULL,
+  `reportnumber` varchar(100) NOT NULL,
+  PRIMARY KEY (`reportnumber`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `describe`
+--
+
+LOCK TABLES `describe` WRITE;
+/*!40000 ALTER TABLE `describe` DISABLE KEYS */;
+INSERT INTO `describe` VALUES ('redlight','20'),('redlight','22');
+/*!40000 ALTER TABLE `describe` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `image`
+--
+
+DROP TABLE IF EXISTS `image`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `image` (
+  `imageid` varchar(45) NOT NULL,
+  `reportnumber` varchar(14) DEFAULT NULL,
+  `path` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`imageid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `image`
+--
+
+LOCK TABLES `image` WRITE;
+/*!40000 ALTER TABLE `image` DISABLE KEYS */;
+INSERT INTO `image` VALUES ('','22',''),('44godofthedead.jpg','44','C:Users\nildaDocumentsJavaWorkSpaceswebappSQLServeruserUploads44godofthedead.jpg'),('s','20','');
+/*!40000 ALTER TABLE `image` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `incident`
+--
+
+DROP TABLE IF EXISTS `incident`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `incident` (
+  `incidentid` varchar(20) NOT NULL,
+  `description` varchar(250) DEFAULT NULL,
+  `icon` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`incidentid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `incident`
+--
+
+LOCK TABLES `incident` WRITE;
+/*!40000 ALTER TABLE `incident` DISABLE KEYS */;
+INSERT INTO `incident` VALUES ('redlight','The holligan did not stop when the lights where flashing red and therefore violated Puertorican law.','incidentIcons/report1.png'),('speedlimit','The holligan was driven at exesive speeds.','incidentIcons/report2.png');
+/*!40000 ALTER TABLE `incident` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `involve`
+--
+
+DROP TABLE IF EXISTS `involve`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `involve` (
+  `lisence` varchar(6) NOT NULL,
+  `reportnumber` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`lisence`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `involve`
+--
+
+LOCK TABLES `involve` WRITE;
+/*!40000 ALTER TABLE `involve` DISABLE KEYS */;
+/*!40000 ALTER TABLE `involve` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `isto`
+--
+
+DROP TABLE IF EXISTS `isto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `isto` (
+  `subscriptionid` varchar(45) NOT NULL,
+  `license` varchar(6) NOT NULL,
+  PRIMARY KEY (`subscriptionid`,`license`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `isto`
+--
+
+LOCK TABLES `isto` WRITE;
+/*!40000 ALTER TABLE `isto` DISABLE KEYS */;
+INSERT INTO `isto` VALUES ('00000000000000','ami000'),('00110000010100','ami000');
+/*!40000 ALTER TABLE `isto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `links`
+--
+
+DROP TABLE IF EXISTS `links`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `links` (
+  `notificationid` varchar(10) NOT NULL,
+  `reportnumber` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`notificationid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `links`
+--
+
+LOCK TABLES `links` WRITE;
+/*!40000 ALTER TABLE `links` DISABLE KEYS */;
+/*!40000 ALTER TABLE `links` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notifications`
+--
+
+DROP TABLE IF EXISTS `notifications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notifications` (
+  `notificationsid` varchar(10) NOT NULL,
+  `viewed` binary(1) DEFAULT '0',
+  PRIMARY KEY (`notificationsid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notifications`
+--
+
+LOCK TABLES `notifications` WRITE;
+/*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `registereduser`
+--
+
+DROP TABLE IF EXISTS `registereduser`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `registereduser` (
+  `userid` varchar(14) NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `email` varchar(45) NOT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `city` varchar(45) DEFAULT NULL,
+  `gender` varchar(1) DEFAULT NULL,
+  `state` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`userid`,`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `registereduser`
+--
+
+LOCK TABLES `registereduser` WRITE;
+/*!40000 ALTER TABLE `registereduser` DISABLE KEYS */;
+INSERT INTO `registereduser` VALUES ('00000000000000','I ams','sd','','ads','m','asds'),('10001100000101','lollol','lol','lol','lol','l','lol');
+/*!40000 ALTER TABLE `registereduser` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `report`
+--
+
+DROP TABLE IF EXISTS `report`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `report` (
+  `date` date DEFAULT NULL,
+  `time` time DEFAULT NULL,
+  `gender` varchar(1) DEFAULT NULL,
+  `reportnumber` varchar(100) NOT NULL,
+  `incidentid` varchar(45) NOT NULL,
+  `license` varchar(6) NOT NULL,
+  `longitude` double DEFAULT NULL,
+  `latitude` double DEFAULT NULL,
+  PRIMARY KEY (`reportnumber`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `report`
+--
+
+LOCK TABLES `report` WRITE;
+/*!40000 ALTER TABLE `report` DISABLE KEYS */;
+INSERT INTO `report` VALUES ('2012-07-10','18:50:00','M','58','stopviolation','ami000',-66.2333,18.2167),('2012-07-10','18:50:00','M','60','stopviolation','ami000',-66.2333,18.2167),('2012-07-10','18:50:00','M','61','redlight','ami000',-66.2333,18.2167),('2012-07-10','20:08:00','M','62','redlight','ami000',-66.2333,18.2167),('2012-07-10','21:02:00','M','65','speedlimit','ami000',-66.2333,18.2167),('2012-07-10','22:21:00','M','70','redlight','ami000',-66.2333,18.2167),('2012-07-10','22:21:00','M','71','redlight','ami000',-66.2333,18.2167),('2012-07-10','22:21:00','M','72','redlight','ami000',-66.2333,18.2167),('2012-07-10','22:21:00','M','73','redlight','ami000',-66.2333,18.2167),('2012-07-10','22:21:00','M','74','redlight','ami000',-66.2333,18.2167);
+/*!40000 ALTER TABLE `report` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `subscribed`
+--
+
+DROP TABLE IF EXISTS `subscribed`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `subscribed` (
+  `subscriptionid` varchar(14) NOT NULL,
+  `userid` varchar(14) DEFAULT NULL,
+  PRIMARY KEY (`subscriptionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `subscribed`
+--
+
+LOCK TABLES `subscribed` WRITE;
+/*!40000 ALTER TABLE `subscribed` DISABLE KEYS */;
+/*!40000 ALTER TABLE `subscribed` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `subscription`
+--
+
+DROP TABLE IF EXISTS `subscription`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `subscription` (
+  `subscriptionid` varchar(14) NOT NULL,
+  `datesubscribed` date NOT NULL,
+  `userid` varchar(14) DEFAULT NULL,
+  PRIMARY KEY (`subscriptionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `subscription`
+--
+
+LOCK TABLES `subscription` WRITE;
+/*!40000 ALTER TABLE `subscription` DISABLE KEYS */;
+INSERT INTO `subscription` VALUES ('lololo','1900-01-01','lol');
+/*!40000 ALTER TABLE `subscription` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `triggered`
+--
+
+DROP TABLE IF EXISTS `triggered`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `triggered` (
+  `subscriptionid` varchar(10) NOT NULL,
+  `notificationid` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`subscriptionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `triggered`
+--
+
+LOCK TABLES `triggered` WRITE;
+/*!40000 ALTER TABLE `triggered` DISABLE KEYS */;
+/*!40000 ALTER TABLE `triggered` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `userid` varchar(14) NOT NULL,
+  `karmapoints` int(11) DEFAULT '0',
+  PRIMARY KEY (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES ('00000000000000',0),('00000606000000',0),('00110000010100',0),('00202000000000',0),('02020000000000',0),('10001100000101',0),('88000008080000',0),('lol',0),('lolipop',100),('lolita',0),('lolitapenis',0),('user',50),('userid',10);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vehicle`
+--
+
+DROP TABLE IF EXISTS `vehicle`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vehicle` (
+  `license` varchar(6) NOT NULL,
+  `model` varchar(45) NOT NULL,
+  `year` date NOT NULL,
+  `color` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`license`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vehicle`
+--
+
+LOCK TABLES `vehicle` WRITE;
+/*!40000 ALTER TABLE `vehicle` DISABLE KEYS */;
+INSERT INTO `vehicle` VALUES ('ami000','null','0000-00-00','null');
+/*!40000 ALTER TABLE `vehicle` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2012-11-08  0:00:29

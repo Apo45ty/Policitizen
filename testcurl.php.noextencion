@@ -1,0 +1,26 @@
+<?php
+$fullflepath = 'imagenes/hats.jpg';
+$upload_url = 'http://localhost:60000/submitReport';
+$params = array(
+  'picture'=>"@$fullfilepath",
+  'title'=>$title, 
+  'endMonths'=>"10", 
+  'endDays'=>"26" ,
+  'endYears'=>"2012", 
+  'hours'=>"2" ,
+  'minutes'=>"53", 
+  'state'=>"PR" ,
+  'city'=>"COMERIO", 
+  'description'=>"Description of location.", 
+  'car_year'=>"2012",
+  'color'=>"blue" ,
+  'model'=>"sunfire" ,
+  'license'=>"ami000" ,
+  'gender'=>"M",
+  'incident'=>"missingcarlights"
+);       
+
+$response = curl_exec($ch);
+
+echo $response;
+?>
